@@ -9,6 +9,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     queryset = Elevator.objects.all()
     serializer_class = ElevatorSerializer
 
+    # To validate the floors
     def perform_create(self, serializer):
         current_floor = self.request.data['current_floor']
         top_target_floor = self.request.data['top_target_floor']
@@ -23,7 +24,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         else:
             raise serializers.ValidationError({'message': 'Current floor is greater than top floor'})
 
-
+    # To move the elevator to up
     @action(detail=True, methods=['post'])
     def move_up(self, request, pk=None):
         elevator = self.get_object()
@@ -51,6 +52,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         
         return Response({'error': 'elevator not available'}, status=status.HTTP_400_BAD_REQUEST)
 
+    # To move the elevator to down
     @action(detail=True, methods=['post'])
     def move_down(self, request, pk=None):
         elevator = self.get_object()
@@ -77,6 +79,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         
         return Response({'error': 'elevator not available'}, status=status.HTTP_400_BAD_REQUEST)
 
+    # To open the elevator door
     @action(detail=True, methods=['post'])
     def open_door(self, request, pk=None):
         elevator = self.get_object()
@@ -92,6 +95,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         
         return Response({'error': 'elevator not available'}, status=status.HTTP_400_BAD_REQUEST)
 
+    # To close the elevator door
     @action(detail=True, methods=['post'])
     def close_door(self, request, pk=None):
         elevator = self.get_object()
@@ -107,6 +111,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         
         return Response({'error': 'elevator not available'}, status=status.HTTP_400_BAD_REQUEST)
 
+    # To stop the elevator
     @action(detail=True, methods=['post'])
     def stop(self, request, pk=None):
         elevator = self.get_object()
@@ -125,6 +130,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
 
         return Response({'error': 'elevator not moving'}, status=status.HTTP_400_BAD_REQUEST)
     
+    # TO check the elevator next destination
     @action(detail=True, methods=['get'])
     def next_destination(self, request, pk=None):
         elevator = self.get_object()
@@ -149,6 +155,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         
         return Response({'error': 'No next destination'}, status=status.HTTP_400_BAD_REQUEST)
     
+    # To mark the elevator as a maintenance
     @action(detail=True, methods=['post'])
     def make_maintenance(self, request, pk=None):
         elevator = self.get_object()
