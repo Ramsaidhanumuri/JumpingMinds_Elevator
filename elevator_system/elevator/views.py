@@ -29,20 +29,20 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def move_up(self, request, pk=None):
         elevator = self.get_object()
 
-        if elevator.status == 'maintenance':
+        if elevator.status == 'Maintenance':
             return Response({'message': 'the elevator in maintenance'})
 
-        if elevator.direction == 'down':
+        elif elevator.direction == 'down':
             return Response({'message': 'the elevator moves down'})
         
-        if elevator.current_floor >= elevator.top_target_floor:
+        elif elevator.current_floor >= elevator.top_target_floor:
             elevator.status = 'idle'
             elevator.direction = 'None'
             elevator.save()
 
             return Response({'message': 'the elevator reached the top floor'})
         
-        if elevator.status == 'idle' or elevator.direction == 'up':
+        elif elevator.status == 'idle' or elevator.direction == 'up':
             elevator.current_floor += 1
             elevator.direction = 'up'
             elevator.status = 'moving'
@@ -57,7 +57,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def move_down(self, request, pk=None):
         elevator = self.get_object()
 
-        if elevator.status == 'maintenance':
+        if elevator.status == 'Maintenance':
             return Response({'message': 'the elevator in maintenance'})
         
         if elevator.direction == 'up':
@@ -84,7 +84,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def open_door(self, request, pk=None):
         elevator = self.get_object()
 
-        if elevator.status == 'maintenance':
+        if elevator.status == 'Maintenance':
             return Response({'message': 'the elevator in maintenance'})
         
         if elevator.status != 'idle':
@@ -100,7 +100,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def close_door(self, request, pk=None):
         elevator = self.get_object()
 
-        if elevator.status == 'maintenance':
+        if elevator.status == 'Maintenance':
             return Response({'message': 'the elevator in maintenance'})
         
         if elevator.status != 'idle':
@@ -116,7 +116,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def stop(self, request, pk=None):
         elevator = self.get_object()
 
-        if elevator.status == 'maintenance':
+        if elevator.status == 'Maintenance':
             return Response({'message': 'the elevator in maintenance'})
 
         if elevator.status == 'idle':
@@ -135,7 +135,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def next_destination(self, request, pk=None):
         elevator = self.get_object()
 
-        if elevator.status == 'maintenance':
+        if elevator.status == 'Maintenance':
             return Response({'message': 'the elevator in maintenance'})
 
         if elevator.direction == 'up' and elevator.current_floor < elevator.top_target_floor:
