@@ -90,5 +90,5 @@ To test the application, you can follow these steps:
 
 1. Activate the virtual environment: source **env/scripts/activate**
 2. Verify that the responses are correct and the application is functioning as expected.
-# Conclusion \
+# Conclusion
 The Elevator System API developed using Django and Django REST Framework provides a scalable and efficient solution for managing elevator systems. By following the design decisions outlined in this README, you can easily deploy and test the application to ensure its smooth operation in production.
