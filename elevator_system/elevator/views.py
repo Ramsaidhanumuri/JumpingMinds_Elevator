@@ -124,6 +124,8 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         
         if elevator.status == 'moving':
             elevator.status = 'idle'
+            elevator.direction = 'None'
+
             elevator.save()
 
             return Response({'status': 'stopped'})
