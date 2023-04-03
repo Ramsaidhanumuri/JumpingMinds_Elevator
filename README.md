@@ -13,8 +13,7 @@ The project is organized into several directories:
 
 **elevator_system/**- This directory contains the settings and configuration files for the Django project.\
 **elevator/** - This directory contains the models, serializers, and viewsets for the Elevator API. \
-**request/** - This directory contains the models, serializers, and viewsets for the Request API.\
-**templates/** - This directory contains the HTML templates used for the frontend of the application (not implemented).
+**request/** - This directory contains the models, serializers, and viewsets for the Request API.
 
 # Database Modelling
 The Elevator System uses SQLite Database with two models: **Elevator** and **Request**.
